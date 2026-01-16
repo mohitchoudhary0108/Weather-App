@@ -4,6 +4,9 @@ const express = require('express');
 // Create an instance of the express application
 const app = express();
 
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
+
 // Define the port the server will listen on
 const PORT = process.env.PORT || 3000;
 
