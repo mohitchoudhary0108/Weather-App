@@ -8,8 +8,19 @@ const axios = require('axios'); // Ensure this line is present
 // Create an instance of the express application
 const app = express();
 
+app.use(express.json()); // Middleware to parse JSON request bodies
+
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
+
+
+// Custom logging middleware
+app.use((req, res, next) => {
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}] ${req.method} ${req.url}`);
+    next(); // Pass control to the next middleware/route handler
+});
+
 
 // Define the port the server will listen on
 const PORT = process.env.PORT || 3000;
